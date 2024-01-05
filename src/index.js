@@ -1,8 +1,17 @@
 import { Hono } from 'hono';
+import { basicAuth } from 'hono/basic-auth'
+
 import { customAlphabet } from 'nanoid';
 
 const app = new Hono();
 
+// app.use(
+//   '/store/*',
+//   basicAuth({
+//     username: 'username',
+//     password: 'password'
+//   })
+// )
 
 const NANOID_SIZE = 6;
 const nanoid = customAlphabet('eEaAoSsIiLlHhNn0MmKkGgBb1Jj2Pp3Ff4Ww5Qq6Yy7Uu8Zz9_-', NANOID_SIZE);
@@ -19,11 +28,11 @@ app.get('/:code', async (c) => {
       return c.redirect(websiteUrl);
     } else {
       console.log('Short code not found');
-      return c.status(404).json({ error: 'Short code not found' });
+      return c.json({ status: 404,  error: 'Short code not found' });
     }
   } catch (e) {
     console.log('Error fetching URL:', e);
-    return c.status(500).json({ error: 'Failed to fetch URL' });
+    return c.json({ status: 500, error: 'Failed to fetch URL' });
   }
 });
 
