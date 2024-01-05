@@ -1,0 +1,9 @@
+name = "lrbc"
+main = "src/index.js"
+compatibility_date = "2023-12-18"
+
+
+[[d1_databases]]
+binding = "DB"
+database_name = "<YOUR_DATABASE_NAME>"
+database_id = "<YOUR_DATABASE_ID>"
