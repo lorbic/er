@@ -36,29 +36,29 @@ app.get('/:code', async (c) => {
   }
 });
 
-app.post('/store', async (c) => {
-	try {
-		// get the long url from json payload in request body
-		const { url } = await c.req.json();
+// app.post('/store', async (c) => {
+// 	try {
+// 		// get the long url from json payload in request body
+// 		const { url } = await c.req.json();
 
-		// Generate a random id of length = NANOID_SIZE
-		const shortCode = nanoid();
-		const created_at = Date.now();
+// 		// Generate a random id of length = NANOID_SIZE
+// 		const shortCode = nanoid();
+// 		const created_at = Date.now();
 
-		console.log(shortCode);
-    // Validation
-    if (!shortCode || !url) {
-      return c.json({status: 400,  error: 'Missing short code or URL' });
-		}
+// 		console.log(shortCode);
+//     // Validation
+//     if (!shortCode || !url) {
+//       return c.json({status: 400,  error: 'Missing short code or URL' });
+// 		}
 
-		// Save the url and
-		const { results } = await c.env.DB.prepare("INSERT INTO urls (short_code, url, created_at) VALUES (?, ?, ?)").bind(shortCode, url, created_at).run();
+// 		// Save the url and
+// 		const { results } = await c.env.DB.prepare("INSERT INTO urls (short_code, url, created_at) VALUES (?, ?, ?)").bind(shortCode, url, created_at).run();
 
-		return c.json({ message: `URL stored successfully. short: ${shortCode}, url: ${url}` });
-  } catch (e) {
-    console.error('Error storing URL:', e);
-    return c.json({ status: 500, error: 'Failed to store URL. There is some error or the code already exists.' });
-  }
-});
+// 		return c.json({ message: `URL stored successfully. short: ${shortCode}, url: ${url}` });
+//   } catch (e) {
+//     console.error('Error storing URL:', e);
+//     return c.json({ status: 500, error: 'Failed to store URL. There is some error or the code already exists.' });
+//   }
+// });
 
 export default app;
