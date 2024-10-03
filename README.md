@@ -6,4 +6,6 @@
 - Cloudflare D1
 - Honojs
 
+### How to use
+- https://lorbic.com/build-a-url-redirector-application-with-cloudflare-workers-and-cloudflare-d1/
 
